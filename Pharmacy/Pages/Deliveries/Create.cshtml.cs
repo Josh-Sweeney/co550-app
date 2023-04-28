@@ -21,8 +21,8 @@ namespace Pharmacy.Pages.Deliveries
 
         public IActionResult OnGet()
         {
-        ViewData["PatientId"] = new SelectList(_context.Patient, "PatientId", "PatientId");
-        ViewData["PrescriptionId"] = new SelectList(_context.Prescription, "PrescriptionId", "PrescriptionId");
+        ViewData["PatientId"] = new SelectList(_context.Patients, "PatientId", "PatientId");
+        ViewData["PrescriptionId"] = new SelectList(_context.Prescriptions, "PrescriptionId", "PrescriptionId");
             return Page();
         }
 
@@ -38,7 +38,7 @@ namespace Pharmacy.Pages.Deliveries
                 return Page();
             }
 
-            _context.Delivery.Add(Delivery);
+            _context.Deliveries.Add(Delivery);
             await _context.SaveChangesAsync();
 
             return RedirectToPage("./Index");

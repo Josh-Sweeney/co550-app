@@ -21,7 +21,7 @@ namespace Pharmacy.Pages.Prescriptions
 
         public IActionResult OnGet()
         {
-        ViewData["PatientId"] = new SelectList(_context.Patient, "PatientId", "PatientId");
+        ViewData["PatientId"] = new SelectList(_context.Patients, "PatientId", "PatientId");
             return Page();
         }
 
@@ -37,7 +37,7 @@ namespace Pharmacy.Pages.Prescriptions
                 return Page();
             }
 
-            _context.Prescription.Add(Prescription);
+            _context.Prescriptions.Add(Prescription);
             await _context.SaveChangesAsync();
 
             return RedirectToPage("./Index");

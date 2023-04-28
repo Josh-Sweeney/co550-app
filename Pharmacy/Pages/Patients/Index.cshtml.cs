@@ -23,9 +23,9 @@ namespace Pharmacy.Pages.Patients
 
         public async Task OnGetAsync()
         {
-            if (_context.Patient != null)
+            if (_context.Patients != null)
             {
-                Patient = await _context.Patient.ToListAsync();
+                Patient = await _context.Patients.ToListAsync();
             }
         }
     }

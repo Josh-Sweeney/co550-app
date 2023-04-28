@@ -23,9 +23,9 @@ namespace Pharmacy.Pages.Deliveries
 
         public async Task OnGetAsync()
         {
-            if (_context.Delivery != null)
+            if (_context.Deliveries != null)
             {
-                Delivery = await _context.Delivery
+                Delivery = await _context.Deliveries
                 .Include(d => d.Patient)
                 .Include(d => d.Prescription).ToListAsync();
             }

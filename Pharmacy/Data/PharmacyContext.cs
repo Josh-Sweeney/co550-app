@@ -1,7 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using Pharmacy.Models;
 
@@ -14,10 +10,17 @@ namespace Pharmacy.Data
         {
         }
 
-        public DbSet<Pharmacy.Models.Patient> Patient { get; set; } = default!;
+        public DbSet<Patient> Patients { get; set; } = default!;
 
-        public DbSet<Pharmacy.Models.Prescription> Prescription { get; set; }
+        public DbSet<Prescription> Prescriptions { get; set; }
 
-        public DbSet<Pharmacy.Models.Delivery> Delivery { get; set; }
+        public DbSet<Delivery> Deliveries { get; set; }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Patient>().ToTable(nameof(Patients));
+            modelBuilder.Entity<Prescription>().ToTable(nameof(Prescriptions));
+            modelBuilder.Entity<Delivery>().ToTable(nameof(Deliveries));
+        }
     }
 }

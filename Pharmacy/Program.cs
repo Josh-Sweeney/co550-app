@@ -15,6 +15,15 @@ builder.Services.AddDbContext<PharmacyContext>(options =>
 
 var app = builder.Build();
 
+using (var scope = app.Services.CreateScope())
+{
+    var services = scope.ServiceProvider;
+
+    var context = services.GetRequiredService<PharmacyContext>();
+    context.Database.EnsureCreated();
+    // DbInitializer.Initialize(context);
+}
+
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
 {

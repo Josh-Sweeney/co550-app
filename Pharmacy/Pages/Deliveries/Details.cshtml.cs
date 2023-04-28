@@ -23,12 +23,12 @@ namespace Pharmacy.Pages.Deliveries
 
         public async Task<IActionResult> OnGetAsync(Guid? id)
         {
-            if (id == null || _context.Delivery == null)
+            if (id == null || _context.Deliveries == null)
             {
                 return NotFound();
             }
 
-            var delivery = await _context.Delivery.FirstOrDefaultAsync(m => m.DeliveryId == id);
+            var delivery = await _context.Deliveries.FirstOrDefaultAsync(m => m.DeliveryId == id);
             if (delivery == null)
             {
                 return NotFound();

@@ -24,12 +24,12 @@ namespace Pharmacy.Pages.Deliveries
 
         public async Task<IActionResult> OnGetAsync(Guid? id)
         {
-            if (id == null || _context.Delivery == null)
+            if (id == null || _context.Deliveries == null)
             {
                 return NotFound();
             }
 
-            var delivery = await _context.Delivery.FirstOrDefaultAsync(m => m.DeliveryId == id);
+            var delivery = await _context.Deliveries.FirstOrDefaultAsync(m => m.DeliveryId == id);
 
             if (delivery == null)
             {
@@ -44,16 +44,16 @@ namespace Pharmacy.Pages.Deliveries
 
         public async Task<IActionResult> OnPostAsync(Guid? id)
         {
-            if (id == null || _context.Delivery == null)
+            if (id == null || _context.Deliveries == null)
             {
                 return NotFound();
             }
-            var delivery = await _context.Delivery.FindAsync(id);
+            var delivery = await _context.Deliveries.FindAsync(id);
 
             if (delivery != null)
             {
                 Delivery = delivery;
-                _context.Delivery.Remove(Delivery);
+                _context.Deliveries.Remove(Delivery);
                 await _context.SaveChangesAsync();
             }
 

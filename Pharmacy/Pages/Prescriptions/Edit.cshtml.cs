@@ -25,18 +25,18 @@ namespace Pharmacy.Pages.Prescriptions
 
         public async Task<IActionResult> OnGetAsync(Guid? id)
         {
-            if (id == null || _context.Prescription == null)
+            if (id == null || _context.Prescriptions == null)
             {
                 return NotFound();
             }
 
-            var prescription =  await _context.Prescription.FirstOrDefaultAsync(m => m.PrescriptionId == id);
+            var prescription =  await _context.Prescriptions.FirstOrDefaultAsync(m => m.PrescriptionId == id);
             if (prescription == null)
             {
                 return NotFound();
             }
             Prescription = prescription;
-           ViewData["PatientId"] = new SelectList(_context.Patient, "PatientId", "PatientId");
+           ViewData["PatientId"] = new SelectList(_context.Patients, "PatientId", "PatientId");
             return Page();
         }
 
@@ -72,7 +72,7 @@ namespace Pharmacy.Pages.Prescriptions
 
         private bool PrescriptionExists(Guid id)
         {
-          return _context.Prescription.Any(e => e.PrescriptionId == id);
+          return _context.Prescriptions.Any(e => e.PrescriptionId == id);
         }
     }
 }

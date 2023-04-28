@@ -15,5 +15,7 @@ namespace Pharmacy.Data
         }
 
         public DbSet<Pharmacy.Models.Patient> Patient { get; set; } = default!;
+
+        public DbSet<Pharmacy.Models.Prescription> Prescription { get; set; }
     }
 }

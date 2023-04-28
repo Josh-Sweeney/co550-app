@@ -1,11 +1,15 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.EntityFrameworkCore;
+using Pharmacy.Data;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddRazorPages();
+builder.Services.AddDbContext<PharmacyContext>(options =>
+    options.UseSqlite(builder.Configuration.GetConnectionString("PharmacyContext") ?? throw new InvalidOperationException("Connection string 'PharmacyContext' not found.")));
 
 var app = builder.Build();
 

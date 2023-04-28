@@ -21,7 +21,7 @@ using (var scope = app.Services.CreateScope())
 
     var context = services.GetRequiredService<PharmacyContext>();
     context.Database.EnsureCreated();
-    // DbInitializer.Initialize(context);
+    DbInitializer.Initialize(context);
 }
 
 // Configure the HTTP request pipeline.

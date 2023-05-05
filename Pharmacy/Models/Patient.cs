@@ -15,6 +15,7 @@ public class Patient
 	public string FullName { get; set; }
 
 	[Column("DateOfBirth", TypeName = "date")]
+	[Display(Name = "Date Of Birth")]
 	public DateTime DateOfBirth { get; set; }
 
 	[Column("Address")]

@@ -15,9 +15,9 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="Prescription.PrescriptionId" />
             <div class="form-group">
-                <label asp-for="Prescription.PatientId" class="control-label"></label>
-                <select asp-for="Prescription.PatientId" class="form-control" asp-items="ViewBag.PatientId"></select>
-                <span asp-validation-for="Prescription.PatientId" class="text-danger"></span>
+                <label asp-for="Prescription.Patient.FullName" class="control-label"></label>
+                <select asp-for="Prescription.Patient.PatientId" class="form-control" asp-items="Model.Patients"></select>
+                <span asp-validation-for="Prescription.Patient.FullName" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Prescription.TotalPrice" class="control-label"></label>

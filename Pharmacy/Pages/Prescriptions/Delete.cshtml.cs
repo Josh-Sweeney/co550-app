@@ -29,7 +29,9 @@ namespace Pharmacy.Pages.Prescriptions
                 return NotFound();
             }
 
-            var prescription = await _context.Prescriptions.FirstOrDefaultAsync(m => m.PrescriptionId == id);
+            var prescription = await _context.Prescriptions
+                .Include(x => x.Patient)
+                .FirstOrDefaultAsync(m => m.PrescriptionId == id);
 
             if (prescription == null)
             {

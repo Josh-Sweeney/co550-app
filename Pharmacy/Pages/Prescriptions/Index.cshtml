@@ -29,7 +29,7 @@
                 @Html.DisplayFor(modelItem => item.TotalPrice)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Patient.PatientId)
+                @Html.DisplayFor(modelItem => item.Patient.FullName)
             </td>
             <td>
                 <a asp-page="./Edit" asp-route-id="@item.PrescriptionId">Edit</a> |

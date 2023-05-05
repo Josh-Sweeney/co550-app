@@ -1,10 +1,13 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
+using NuGet.ContentModel.Infrastructure;
 using Pharmacy.Data;
 using Pharmacy.Models;
 
@@ -17,22 +20,23 @@ namespace Pharmacy.Pages.Prescriptions
         public CreateModel(Pharmacy.Data.PharmacyContext context)
         {
             _context = context;
+            Patients = new SelectList(_context.Patients, "PatientId", "FullName");
         }
 
         public IActionResult OnGet()
         {
-        ViewData["PatientId"] = new SelectList(_context.Patients, "PatientId", "PatientId");
             return Page();
         }
 
-        [BindProperty]
+        [BindProperty] 
         public Prescription Prescription { get; set; }
         
+        public SelectList Patients { get; set; }
 
         // To protect from overposting attacks, see https://aka.ms/RazorPagesCRUD
         public async Task<IActionResult> OnPostAsync()
         {
-          if (!ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
                 return Page();
             }

@@ -19,7 +19,7 @@ namespace Pharmacy.Pages.Prescriptions
             _context = context;
         }
 
-      public Prescription Prescription { get; set; }
+        public Prescription Prescription { get; set; }
 
         public async Task<IActionResult> OnGetAsync(Guid? id)
         {
@@ -28,15 +28,19 @@ namespace Pharmacy.Pages.Prescriptions
                 return NotFound();
             }
 
-            var prescription = await _context.Prescriptions.FirstOrDefaultAsync(m => m.PrescriptionId == id);
+            var prescription = await _context.Prescriptions
+                .Include(x => x.Patient)
+                .FirstOrDefaultAsync(m => m.PrescriptionId == id);
+            
             if (prescription == null)
             {
                 return NotFound();
             }
-            else 
+            else
             {
                 Prescription = prescription;
             }
+
             return Page();
         }
     }

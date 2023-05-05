@@ -20,9 +20,9 @@
                 <span asp-validation-for="Delivery.PrescriptionId" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Delivery.PatientId" class="control-label"></label>
-                <select asp-for="Delivery.PatientId" class="form-control" asp-items="ViewBag.PatientId"></select>
-                <span asp-validation-for="Delivery.PatientId" class="text-danger"></span>
+                <label asp-for="Delivery.Patient.FullName" class="control-label"></label>
+                <select asp-for="Delivery.Patient.PatientId" class="form-control" asp-items="Model.Patients"></select>
+                <span asp-validation-for="Delivery.Patient.FullName" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <input type="submit" value="Save" class="btn btn-primary" />

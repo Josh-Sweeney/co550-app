@@ -18,10 +18,13 @@ namespace Pharmacy.Pages.Deliveries
         public EditModel(Pharmacy.Data.PharmacyContext context)
         {
             _context = context;
+            Patients = new SelectList(_context.Patients, "PatientId", "FullName");
         }
 
         [BindProperty]
         public Delivery Delivery { get; set; } = default!;
+        
+        public SelectList Patients { get; set; }
 
         public async Task<IActionResult> OnGetAsync(Guid? id)
         {

@@ -29,7 +29,10 @@ namespace Pharmacy.Pages.Deliveries
                 return NotFound();
             }
 
-            var delivery = await _context.Deliveries.FirstOrDefaultAsync(m => m.DeliveryId == id);
+            var delivery = await _context.Deliveries
+                .Include(x => x.Patient)
+                .Include(x => x.Prescription)
+                .FirstOrDefaultAsync(m => m.DeliveryId == id);
 
             if (delivery == null)
             {

@@ -17,23 +17,25 @@ namespace Pharmacy.Pages.Deliveries
         public CreateModel(Pharmacy.Data.PharmacyContext context)
         {
             _context = context;
+            Patients = new SelectList(_context.Patients, "PatientId", "FullName");
         }
 
         public IActionResult OnGet()
         {
-        ViewData["PatientId"] = new SelectList(_context.Patients, "PatientId", "PatientId");
-        ViewData["PrescriptionId"] = new SelectList(_context.Prescriptions, "PrescriptionId", "PrescriptionId");
+            ViewData["PatientId"] = new SelectList(_context.Patients, "PatientId", "PatientId");
+            ViewData["PrescriptionId"] = new SelectList(_context.Prescriptions, "PrescriptionId", "PrescriptionId");
             return Page();
         }
 
-        [BindProperty]
-        public Delivery Delivery { get; set; }
+        [BindProperty] public Delivery Delivery { get; set; }
         
+        public SelectList Patients { get; set; }
+
 
         // To protect from overposting attacks, see https://aka.ms/RazorPagesCRUD
         public async Task<IActionResult> OnPostAsync()
         {
-          if (!ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
                 return Page();
             }

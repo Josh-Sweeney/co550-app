@@ -12,24 +12,25 @@
 </p>
 <table class="table">
     <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Delivery[0].Prescription)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Delivery[0].Patient)
-            </th>
-            <th></th>
-        </tr>
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Delivery[0].Prescription)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Delivery[0].Patient)
+        </th>
+        <th></th>
+    </tr>
     </thead>
     <tbody>
-@foreach (var item in Model.Delivery) {
+    @foreach (var item in Model.Delivery)
+    {
         <tr>
             <td>
                 @Html.DisplayFor(modelItem => item.Prescription.PrescriptionId)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Patient.PatientId)
+                @Html.DisplayFor(modelItem => item.Patient.FullName)
             </td>
             <td>
                 <a asp-page="./Edit" asp-route-id="@item.DeliveryId">Edit</a> |
@@ -37,6 +38,6 @@
                 <a asp-page="./Delete" asp-route-id="@item.DeliveryId">Delete</a>
             </td>
         </tr>
-}
+    }
     </tbody>
 </table>
